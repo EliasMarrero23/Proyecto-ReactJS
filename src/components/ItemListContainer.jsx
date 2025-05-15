@@ -7,15 +7,12 @@ const ItemListContainer = ({greeting}) => {
      
     const {categoryId}= useParams()
 
-        //Tiene que estar a la escucha del cambio
      useEffect(()=>{
         getProducts()
         .then((res)=> {
             if(categoryId){
-                //filtrar
                 setProducts(res.filter((prod)=> prod.category === categoryId ))
             }else{
-                //no filtro
                 setProducts(res)
             }
         })
@@ -25,8 +22,7 @@ const ItemListContainer = ({greeting}) => {
  
     return(
         <div>
-            {/* <Input/> */}
-            <h1 className="text-success">{greeting}{categoryId && <span>{categoryId}</span>}</h1>
+            <h1 className="greeting d-flex justify-content-center">{greeting}{categoryId && <span>{categoryId}</span>}</h1>
             <ItemList products={products}/>
         </div>
     )

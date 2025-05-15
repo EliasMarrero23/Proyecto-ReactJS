@@ -8,7 +8,6 @@ const[detail, setDetail]= useState({})
 const {itemId} = useParams()
 
     useEffect(()=>{
-        //llamamos a la promesa
         getItem(itemId)
         .then((res)=> setDetail(res))
         .catch((error)=> console.log(error))
