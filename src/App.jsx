@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './css/TemaOscuro.css';
 import { CartProvider } from './components/context/CartContext';
 import Cart from './components/Cart';
+import CheckoutHookForm from './components/CheckoutHookForm';
 
 function App() {
  
@@ -23,6 +24,7 @@ function App() {
         <Route path='/contacto' element={<Contacto/>}/>
         <Route path='/cursos' element={<Cursos/>}/>
         <Route path='/cart' element={<Cart/>}/>
+        <Route path='/checkout' element={<CheckoutHookForm/>}/>
       </Routes>
     </CartProvider>
     </BrowserRouter>
