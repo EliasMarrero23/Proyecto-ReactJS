@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react'
+import {useState} from 'react'
 
-const ItemCount = ({stock}) => {
+const ItemCount = ({stock, onAdd}) => {
     const [count, setCount]=useState(1)
     
     const sumar = () => {
@@ -15,7 +15,11 @@ const ItemCount = ({stock}) => {
             setCount(count -1)
         }
     }
-
+    
+    const comprar = ()=>{
+        onAdd(count)
+    }
+    
   return (
     <div>
         <div className='counter-container'>

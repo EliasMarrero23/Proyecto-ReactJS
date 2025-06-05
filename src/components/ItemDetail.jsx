@@ -1,11 +1,28 @@
 import React from 'react'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { CartContext } from './context/CartContext'
 import ItemCount from './ItemCount'
+import { Link } from 'react-router-dom'
+
 
 const ItemDetail = ({detail}) => {
 
-  const {cart}= useContext(CartContext)
+  const [purchase, setPurchase]= useState(false)
+  
+  const {cart, addToCart}= useContext(CartContext)
+
+  const onAdd = (cantidad) => {
+    addToCart(detail, cantidad)
+    setPurchase(true)
+      Swal.fire({
+        position:'top-end',
+        icon:'success',
+        title:'Agregaste ${detail.name} al carrito',
+        showCancelButton: false,
+        showConfirmButton: false,
+        timer: 1000
+      })
+  }
 
   return (
     <div style={{display:'flex', justifyContent:'center', flexDirection:'column', alignItems:'center'}}>
@@ -14,7 +31,13 @@ const ItemDetail = ({detail}) => {
         <p>{detail.description}</p>
         <p>Stock: {detail.stock} unidades</p>
         <p>Price: ${detail.price}</p>
-        <ItemCount stock={detail.stock}/>
+        {
+        purchase
+        ? <div style={{display:'flex', width:'80%', alignItems:'center', justifyContent:'space-between'}}>
+            <Link className='btn btn-dark' to='/'>Seguir comprando</Link>
+          </div>
+        : <ItemCount stock={detail.stock} onAdd={onAdd}/>  
+        }
     </div>
   )
 }
